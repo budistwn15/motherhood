@@ -24,7 +24,7 @@
             @endif
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="alert alert-success">
+                    <div class="alert bg-pink">
                         Selamat datang di Motherhood, tempat di mana Anda dapat menemukan berbagai informasi tentang kehamilan dan diagnosis penyakit. Kami senang Anda memilih kami sebagai sumber informasi Anda dan berharap Anda menikmati menjelajahi situs kami. Terima kasih telah mengunjungi Motherhood!
                     </div>
                 </div>
