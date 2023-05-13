@@ -1,0 +1,14 @@
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+
+.btn-diagnosis{
+    background-color: #be3455 !important;
+    color: #fff;
+}
+
+.btn-diagnosis:hover{
+    background-color: #bf3455 !important;
+    color: #fff;
+}

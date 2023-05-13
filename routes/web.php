@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 //front
 Route::get('/',\App\Http\Controllers\front\HomeController::class)->name('home');
+Route::get('/landing',fn() => view('layouts.front-v1'));
 Route::prefix('diagnosis')->group(function () {
     Route::get('/create',[\App\Http\Controllers\front\DiagnosisController::class,'create'])->name('diagnosis.create');
     Route::post('/create',[\App\Http\Controllers\front\DiagnosisController::class,'store'])->name('diagnosis.store');
@@ -43,6 +44,8 @@ Route::prefix('admin/')->middleware('auth')->group(function () {
     Route::get('admins/{user}/edit',[\App\Http\Controllers\Back\AdminController::class,'edit'])->name('admins.edit');
     Route::put('admins/{user}/edit',[\App\Http\Controllers\Back\AdminController::class,'update'])->name('admins.update');
     Route::delete('admins/{user}/destroy',[\App\Http\Controllers\Back\AdminController::class,'destroy'])->name('admins.destroy');
+
+    Route::resource('identitas',\App\Http\Controllers\Back\IdentitasController::class);
 
     Route::prefix('relasi')->group(function () {
         Route::get('/gejala',[\App\Http\Controllers\Back\RelasiGejalaController::class,'index'])->name('relasi-gejala.index');

@@ -1,35 +1,27 @@
-@extends('layouts.front')
+@extends('layouts.front-v1')
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Artikel</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('home')}}">Motherhood</a></li>
-                        <li class="breadcrumb-item active">Artikel</li>
-                    </ol>
+    <section id="hero" style="background-color: #be3455;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 my-5 text-white">
+                    <h2 class="fw-bold lh-sm">Artikel</h2>
+                    <p class="lead text-mute">Kami menyediakan berbagai artikel dan informasi terbaru tentang kesehatan ibu hamil dan bayi dalam kandungan.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="content">
-        <div class="container-fluid">
-            @if(session()->has('message'))
-                <div class="alert alert-success my-3">
-                    {{session()->get('message')}}
-                </div>
-            @endif
+
+    <section class="content my-5 py-5">
+        <div class="container">
             <div class="row">
                 @foreach($articles as $article)
                     <div class="col-lg-4">
-                        <div class="card">
+                        <div class="card p-3">
                             <div class="card-body">
-                                <h4>{{$article->judul}}</h4>
-                                <p>{{$article->isi}}</p>
-                                <a href="{{$article->link}}" target="_blank" class="btn bg-pink">Lihat</a>
+                                <h4 class="fw-bold card-title">{{$article->judul}}</h4>
+                                <p class="my-3 lead">{{$article->isi}}</p>
+                                <a href="{{$article->link}}" target="_blank" class="btn btn-diagnosis">Lihat</a>
                             </div>
                         </div>
                     </div>

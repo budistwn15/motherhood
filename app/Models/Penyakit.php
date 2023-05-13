@@ -9,7 +9,8 @@ class Penyakit extends Model
 {
     protected $fillable = [
         'kode_penyakit',
-        'nama_penyakit'
+        'nama_penyakit',
+        'penyakit_id'
     ];
 
     public function gejalas() : BelongsToMany

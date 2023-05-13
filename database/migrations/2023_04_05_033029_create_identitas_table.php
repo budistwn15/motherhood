@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->unsignedInteger('umur');
             $table->string('pekerjaan');
             $table->string('alamat');
+            $table->foreignId('penyakit_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

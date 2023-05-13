@@ -1,36 +1,29 @@
-@extends('layouts.front')
+@extends('layouts.front-v1')
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Diagnosis</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{route('diagnosis.create')}}">Diagnosis</a></li>
-                        <li class="breadcrumb-item active">Form Identitas</li>
-                    </ol>
+    {{--Hero--}}
+    <section id="hero" style="background-color: #be3455;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 my-5 text-white">
+                    <h2 class="fw-bold lh-sm">Diagnosis Penyakit</h2>
+                    <p class="lead text-mute">Sebelum memulai diagnosis penyakit ibu hamil, mohon isi form identitas terlebih dahulu untuk membantu kami memberikan diagnosis yang lebih akurat dan spesifik. Kami akan menjaga kerahasiaan semua informasi yang Anda berikan dan hanya akan digunakan untuk kepentingan diagnosis.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-    <section class="content">
-        <div class="container-fluid">
+    <section id="identitas" class="my-3 py-5">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex justify-content-between">
-                                <h3 class="card-title pt-2">Silahkan isi gejala yang anda alami</h3>
-                            </div>
+                <div class="col-lg-10 mx-auto">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success my-3">
+                            {{session()->get('message')}}
                         </div>
+                    @endif
+                    <div class="card border-0">
                         <div class="card-body">
-                            @if(session()->has('message'))
-                                <div class="alert alert-success my-3">
-                                    {{session()->get('message')}}
-                                </div>
-                            @endif
+                            <h3 class="card-title mb-4">Identifikasi Gejala</h3>
                             <form action="{{route('diagnosis.update',['kode_identitas' => $identitas->kode_identitas])}}" method="post">
                                 @csrf
                                 <table class="table">
@@ -54,7 +47,9 @@
                                         </tr>
                                     @endforeach
                                 </table>
-                                <button type="submit" class="btn bg-pink">Selanjutnya</button>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="submit" class="btn btn-diagnosis text-end">Selanjutnya</button>
+                                </div>
                             </form>
                         </div>
                     </div>

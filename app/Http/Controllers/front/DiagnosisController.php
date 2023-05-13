@@ -45,47 +45,29 @@ class DiagnosisController extends Controller
     public function update($kode_identitas, HasilRequest $request)
     {
         $identitas = Identitas::where('kode_identitas', $kode_identitas)->firstOrFail();
-        $penyakits = Penyakit::with(['gejalas' => function($query) use ($request){
-            $query->when($request['G01'] == 'ya' && $request['G02'] == 'ya' && $request['G03'] == 'ya' && $request['G04'] == 'ya' && $request['G05'] == 'ya' && $request['G06'] == 'ya' && $request['G07'] == 'ya' && $request['G08'] == 'ya', function ($q){
-               $q->whereIn('gejala_id', [1,2,3,4,5,6,7,8])->first();
-            });
-            $query->when($request['G01'] == 'ya' && $request['G02'] == 'ya' && $request['G03'] == 'ya' && $request['G04'] == 'ya' && $request['G05'] == 'ya' && $request['G10'] == 'ya' && $request['G23'] == 'ya' && $request['G11'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [1,2,3,4,5,10,23,11])->first();
-            });
-            $query->when($request['G10'] == 'ya' && $request['G12'] == 'ya' && $request['G13'] == 'ya' && $request['G14'] == 'ya' && $request['G15'] == 'ya' && $request['G16'] == 'ya' && $request['G17'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [10,12,13,14,15,16,17])->first();
-            });
-            $query->when($request['G12'] == 'ya' && $request['G13'] == 'ya' && $request['G14'] == 'ya' && $request['G15'] == 'ya' && $request['G07'] == 'ya' && $request['G27'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [12,13,14,15,27])->first();
-            });
-            $query->when($request['G18'] == 'ya' && $request['G19'] == 'ya' && $request['G20'] == 'ya' && $request['G21'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [18,19,20,21])->first();
-            });
-            $query->when($request['G18'] == 'ya' && $request['G19'] == 'ya' && $request['G20'] == 'ya' && $request['G21'] == 'ya' && $request['G01'] == 'ya' && $request['G11'] == 'ya' && $request['G35'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [18,19,20,21,1,11,35])->first();
-            });
-            $query->when($request['G22'] == 'ya' && $request['G23'] == 'ya' && $request['G24'] == 'ya' && $request['G25'] == 'ya' && $request['G26'] == 'ya' && $request['G27'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [22,23,24,25,26,27])->first();
-            });
-            $query->when($request['G22'] == 'ya' && $request['G23'] == 'ya' && $request['G24'] == 'ya' && $request['G25'] == 'ya' && $request['G26'] == 'ya' && $request['G27'] == 'ya' && $request['G32'] == 'ya' && $request['G02'] == 'ya' && $request['G10'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [22,23,24,25,26,27,32,2,10])->first();
-            });
-            $query->when($request['G28'] == 'ya' && $request['G29'] == 'ya' && $request['G30'] == 'ya' && $request['G31'] == 'ya' && $request['G32'] == 'ya' && $request['G33'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [28,29,30,31,32,33])->first();
-            });
-            $query->when($request['G28'] == 'ya' && $request['G29'] == 'ya' && $request['G30'] == 'ya' && $request['G31'] == 'ya' && $request['G32'] == 'ya' && $request['G33'] == 'ya' && $request['G07'] == 'ya' && $request['G04'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [28,29,30,31,32,33,7,4])->first();
-            });
-            $query->when($request['G09'] == 'ya' && $request['G11'] == 'ya' && $request['G34'] == 'ya' && $request['G35'] == 'ya' && $request['G36'] == 'ya' && $request['G37'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [9,11,34,35,36,37])->first();
-            });
-            $query->when($request['G09'] == 'ya' && $request['G11'] == 'ya' && $request['G34'] == 'ya' && $request['G35'] == 'ya' && $request['G36'] == 'ya' && $request['G37'] == 'ya' && $request['G04'] == 'ya' && $request['G16'] == 'ya', function ($q){
-                $q->whereIn('gejala_id', [9,11,34,35,36,37,4,16])->first();
-            });
-        }],'solusis')->get();
+        if($request['G01'] && $request['G02'] && $request['G03'] && $request['G04'] && $request['G05'] && $request['G06'] && $request['G07'] && $request['G08'] || $request['G01'] && $request['G02'] && $request['G03'] && $request['G04'] && $request['G05'] && $request['G10'] && $request['G23'] && $request['G11'] ){
+            $penyakit = Penyakit::find(1);
+        }else if($request['G10'] && $request['G12'] && $request['G13'] && $request['G14'] && $request['G15'] && $request['G16'] && $request['G17'] || $request['G12'] && $request['G13'] && $request['G14'] && $request['G15'] && $request['G07'] && $request['G27']){
+            $penyakit = Penyakit::find(2);
+        }else if($request['G18'] && $request['G19'] && $request['G20'] && $request['G21'] || $request['G18'] && $request['G19'] && $request['G20'] && $request['G21'] && $request['G01'] && $request['G11'] && $request['G35']){
+            $penyakit = Penyakit::find(3);
+        }else if($request['G22'] && $request['G23'] && $request['G24'] && $request['G25'] && $request['G26'] && $request['G27'] || $request['G18'] && $request['G22'] && $request['G23'] && $request['G24'] && $request['G25'] && $request['G26'] && $request['G27'] && $request['G32'] && $request['G02'] && $request['G10']){
+            $penyakit = Penyakit::find(4);
+        }else if($request['G28'] && $request['G29'] && $request['G30'] && $request['G31'] && $request['G32'] && $request['G33'] || $request['G28'] && $request['G29'] && $request['G30'] && $request['G31'] && $request['G32'] && $request['G33'] && $request['G07'] && $request['G04']){
+            $penyakit = Penyakit::find(5);
+        }else if($request['G09'] && $request['G11'] && $request['G34'] && $request['G35'] && $request['G36'] && $request['G37'] || $request['G09'] && $request['G11'] && $request['G34'] && $request['G35'] && $request['G36'] && $request['G37'] && $request['G04'] && $request['G16']){
+            $penyakit = Penyakit::find(6);
+        }else{
+            $penyakit = null;
+        }
+
+        Identitas::where('kode_identitas', $identitas->kode_identitas)->update([
+            'penyakit_id' => $penyakit->id
+        ]);
 
         return view('front.diagnosis.hasil',compact(
-            'penyakits'
+            'identitas',
+            'penyakit'
         ));
     }
 }
