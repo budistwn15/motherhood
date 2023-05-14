@@ -62,7 +62,7 @@ class DiagnosisController extends Controller
         }
 
         Identitas::where('kode_identitas', $identitas->kode_identitas)->update([
-            'penyakit_id' => $penyakit->id
+            'penyakit_id' => $penyakit->id ?? null
         ]);
 
         return view('front.diagnosis.hasil',compact(

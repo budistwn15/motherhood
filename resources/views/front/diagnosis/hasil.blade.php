@@ -45,6 +45,7 @@
                             </table>
                         </div>
                     </div>
+                    @if($penyakit != null)
                     <div class="card border-0 mb-4">
                         <div class="card-header btn-diagnosis">
                             Penyakit
@@ -66,6 +67,13 @@
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a href="{{route('diagnosis.create')}}" class="btn btn-diagnosis text-end">Simpan</a>
                     </div>
+                    @else
+                        <div class="card border-0 mb-4">
+                            <div class="card-header btn-diagnosis">
+                                Silahkan periksa langsung ke bidan atau dokter
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
