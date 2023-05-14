@@ -39,6 +39,9 @@
                 <li class="nav-item me-4">
                     <a class="nav-link {{(request()->is('artikel')) ? 'active' : ''}}" href="{{route('front.artikel.index')}}">Artikel</a>
                 </li>
+                <li class="nav-item me-4">
+                    <a class="btn btn-diagnosis" href="{{route('login')}}">Login</a>
+                </li>
             </ul>
         </div>
     </div>
