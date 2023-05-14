@@ -52,7 +52,7 @@
                                                 <td>{{$value->umur}}</td>
                                                 <td>{{$value->pekerjaan}}</td>
                                                 <td>{{$value->alamat}}</td>
-                                                <td>{{$value->penyakit->nama_penyakit}}</td>
+                                                <td>{{$value->penyakit->nama_penyakit ?? '-'}}</td>
                                                 <td>{{$value->created_at->diffForHumans()}}</td>
                                             </tr>
                                         @endforeach
